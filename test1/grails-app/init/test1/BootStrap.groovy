@@ -9,14 +9,17 @@ import tpmbds.UserRole
 class BootStrap {
 
     def init = { servletContext ->
-        //creer les roles
+        // créer les roles
         def roleAdmin = new Role(authority: "ROLE_ADMIN").save()
+        def roleModerator = new Role(authority: "ROLE_MODERATOR").save()
         def roleUser = new Role(authority: "ROLE_USER").save()
 
         def userAdmin = new User(username: "admin", password: "password").save()
+        def userModerator = new User(username: "moderator", password: "password").save()
         def userClient = new User(username: "user", password: "password").save()
 
         UserRole.create(userAdmin, roleAdmin, true)
+        UserRole.create(userModerator, roleModerator, true)
         UserRole.create(userClient, roleUser,  true)
 
                 (1..5).each {

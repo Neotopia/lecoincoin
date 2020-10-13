@@ -30,6 +30,7 @@ class UserController {
 
         try {
             userService.save(user)
+            UserRole.create(user, Role.get(params.role), true)
         } catch (ValidationException e) {
             respond user.errors, view:'create'
             return
@@ -42,6 +43,7 @@ class UserController {
             }
             '*' { respond user, [status: CREATED] }
         }
+
     }
 
     def edit(Long id) {

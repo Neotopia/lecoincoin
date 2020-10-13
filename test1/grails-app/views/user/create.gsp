@@ -27,6 +27,12 @@
             </g:hasErrors>
             <g:form resource="${this.user}" method="POST">
                 <fieldset class="form">
+                    <div>
+                        Rôle de l'utilisateur :
+                        <g:select from ="${tpmbds.Role.list()}"
+                            name="role"
+                            optionKey="id" optionValue="authority"/>
+                    </div>
                     <f:all bean="user"/>
                 </fieldset>
                 <fieldset class="buttons">
