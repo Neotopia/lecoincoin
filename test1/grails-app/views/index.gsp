@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Lecoincoin</title>
 </head>
 <body>
     <content tag="nav">
@@ -51,23 +51,35 @@
 
     <div id="content" role="main">
         <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
+            <h1>Bienvenue sur Lecoincoin !</h1>
 
             <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
+                Lecoincoin est une société familiale qui existe depuis 1940, elle est gérée par Mr Gerard
+                Lecoincoin et Mme Mathilde Lecoincoin.
+                Lecoincoin est une entreprise de dépôt vente touchant à tout ce qui peut se vendre ou
+                s’acheter.
             </p>
 
             <div id="controllers" role="navigation">
                 <h2>Available Controllers:</h2>
                 <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
+
+                    <li class="controller">
+                        <g:link controller="login">Connexion</g:link>
+                    </li>
+
+                    <li class="controller">
+                        <g:link controller="logout">Se déconnecter</g:link>
+                    </li>
+
+                    <li class="controller">
+                        <g:link controller="user">Utilisateurs</g:link>
+                    </li>
+
+                    <li class="controller">
+                        <g:link controller="saleAd">Annonces</g:link>
+                    </li>
+
                 </ul>
             </div>
         </section>
