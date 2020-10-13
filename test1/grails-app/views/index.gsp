@@ -45,7 +45,7 @@
 
     <div class="svg" role="presentation">
         <div class="grails-logo-container">
-            <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
+            <asset:image src="fond.jpg" class="grails-logo"/>
         </div>
     </div>
 
@@ -61,13 +61,8 @@
             </p>
 
             <div id="controllers" role="navigation">
-<<<<<<< HEAD
-                <h2>Pages disponibles:</h2>
-                        <g:link controller="login">Connexion </g:link> </br>
-                        <g:link controller="user">Profil </g:link>
 
-=======
-                <h2>Available Controllers:</h2>
+                <h2>Pages disponibles:</h2>
                 <ul>
 
                     <li class="controller">
@@ -87,7 +82,6 @@
                     </li>
 
                 </ul>
->>>>>>> 9552f88dd74eb70df24ec3b941968333e40f0feb
             </div>
 
         </section>
