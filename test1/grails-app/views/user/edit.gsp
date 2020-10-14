@@ -33,6 +33,14 @@
                   <!--  <f:all bean="user"/> -->
 
                     <div class="fieldcontain required">
+                        <label>Rôle de l'utilisateur</label>
+                        <g:select from ="${tpmbds.Role.list()}"
+                                  name="role"
+                                  optionKey="id"
+                                  optionValue="authority"/>
+                    </div>
+
+                    <div class="fieldcontain required">
                         <label for="username">Identifiant
                             <span class="required-indicator">*</span>
                         </label>
