@@ -31,7 +31,11 @@
         <g:each in="${userList}" var="user">
             <tr>
                 <th scope="row">${user.id}</th>
-                    <td>${user.username}</td>
+                    <td>
+                        <g:link controller="user" action="show" id="${user.id}">
+                            ${user.username}
+                        </g:link>
+                    </td>
                     <td>
                         <g:each in="${user.saleAds}" var="saleAd">
                             <g:link controller="saleAd" action="show" id="${saleAd.id}">

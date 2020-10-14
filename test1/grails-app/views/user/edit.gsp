@@ -29,7 +29,66 @@
             <g:form resource="${this.user}" method="PUT">
                 <g:hiddenField name="version" value="${this.user?.version}" />
                 <fieldset class="form">
-                    <f:all bean="user"/>
+
+                  <!--  <f:all bean="user"/> -->
+
+                    <div class="fieldcontain required">
+                        <label for="username">Identifiant
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="username" value="${user.username}" required="" id="username">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="password">Mot de passe
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="password" name="password" required="" value="" id="password">
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="passwordExpired">Mot de passe expiré</label>
+                        <input type="hidden" name="_passwordExpired">
+                        <g:checkBox name="passwordExpired" id="passwordExpired" value="${user.passwordExpired}" />
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="accountLocked">Compte verrouillé</label>
+                        <input type="hidden" name="_accountLocked">
+                        <g:checkBox name="accountLocked" id="accountLocked" value="${user.accountLocked}" />
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="accountExpired">Compte expiré</label>
+                        <input type="hidden" name="_accountExpired">
+                        <g:checkBox name="accountExpired" id="accountExpired" value="${user.accountExpired}" />
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label for="enabled">Actif</label>
+                        <input type="hidden" name="_enabled">
+                        <g:checkBox name="enabled" id="enabled" value="${user.enabled}" />
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label id="saleAds-label" class="property-label">Annonces</label>
+                        <div class="property-value" aria-labelledby="saleAds-label">
+                            <ul>
+                                <g:each in="${user.saleAds}" var="saleAd">
+                                    <li>
+                                        <g:link controller="saleAd" action="show" id="${saleAd.id}">
+                                            ${saleAd.title}
+                                        </g:link>
+                                    </li>
+                                </g:each>
+                                <li>
+                                    <g:link controller="saleAd" action="create">
+                                        Ajouter une annonce
+                                    </g:link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
