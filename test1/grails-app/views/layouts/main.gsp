@@ -25,12 +25,8 @@
                 </button>
                 <a class="navbar-brand" href="/tpmbds">
                     <asset:image src="canard_logo_petit.png" alt="LeCoinCoin Logo"/>
-
-
                         <g:link controller="user" style="margin-left: 50px;position: relative; top: 25px;">Utilisateurs</g:link>
-
                         <g:link controller="saleAd" style="margin-left: 20px;position: relative; top: 25px;">Annonces</g:link>
-
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
