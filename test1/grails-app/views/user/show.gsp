@@ -30,11 +30,6 @@
                 </li>
 
                 <li class="fieldcontain">
-                    <span id="passwordExpired-label" class="property-label">Mot de passe expiré</span>
-                    <div class="property-value" aria-labelledby="passwordExpired-label">${user.passwordExpired}</div>
-                </li>
-
-                <li class="fieldcontain">
                     <span id="saleAds-label" class="property-label">Annonces</span>
                     <div class="property-value" aria-labelledby="saleAds-label">
                         <ul>
@@ -47,6 +42,11 @@
                             </g:each>
                         </ul>
                     </div>
+                </li>
+
+                <li class="fieldcontain">
+                    <span id="passwordExpired-label" class="property-label">Mot de passe expiré</span>
+                    <div class="property-value" aria-labelledby="passwordExpired-label">${user.passwordExpired}</div>
                 </li>
 
                 <li class="fieldcontain">
