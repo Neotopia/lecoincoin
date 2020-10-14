@@ -14,7 +14,6 @@
     <g:layoutHead/>
 </head>
 <body>
-
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -25,7 +24,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/tpmbds">
-		    <asset:image src="canard logo petit.png" alt="LeCoinCoin Logo"/>
+                    <asset:image src="canard logo petit.png" alt="LeCoinCoin Logo"/>
                 </a>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
@@ -33,6 +32,9 @@
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
+        </div>
+        <div class="currentuser">
+            <sec:loggedInUserInfo field="username" />
         </div>
     </div>
 

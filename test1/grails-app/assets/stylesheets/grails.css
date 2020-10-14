@@ -8,6 +8,7 @@ html, body {
     -webkit-overflow-scrolling: touch;
 }
 
+
 p, ul, pre, h1, h2, h3, h4, h5, h6, h7, h8 {
     margin: 1em 0;
 }
@@ -42,6 +43,11 @@ pre {
 .grails-icon img {
     width: 40px;
 
+}
+.navbar .currentuser{
+    color: white;
+    font-size: 15px;
+    padding: 10px;
 }
 .navbar-default, .navbar-static-top {
     background-color: #424649;
