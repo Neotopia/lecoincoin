@@ -60,6 +60,9 @@ class UserController {
 
         try {
             userService.save(user)
+            UserRole.removeAll(user)
+            UserRole.create(user, Role.get(params.role), true)
+
         } catch (ValidationException e) {
             respond user.errors, view:'edit'
             return
