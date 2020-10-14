@@ -24,7 +24,7 @@
 
     <div class="svg" role="presentation">
         <div class="logo-container">
-            <asset:image src="fond.jpg" class="lecoincoin-logo"/>
+            <asset:image src="fond.jpg" class="lecoincoin-logo" style="display: block; margin: auto;"/>
         </div>
     </div>
 
@@ -38,22 +38,6 @@
                 Lecoincoin est une entreprise de dépôt vente touchant à tout ce qui peut se vendre ou
                 s’acheter.
             </p>
-
-            <div id="controllers" role="navigation">
-
-                <h2>Pages disponibles:</h2>
-                <ul>
-
-                    <li class="controller">
-                        <g:link controller="user">Utilisateurs</g:link>
-                    </li>
-
-                    <li class="controller">
-                        <g:link controller="saleAd">Annonces</g:link>
-                    </li>
-
-                </ul>
-            </div>
 
         </section>
     </div>
