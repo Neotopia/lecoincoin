@@ -46,7 +46,7 @@
                         </td>
                         <td>
                             <g:link controller="saleAd" action="show" id="${saleAd.id}">
-                                <asset:image src="canard logo petit.png" height="50" width="50" absolute="true" />
+                                <asset:image src="canard_logo_petit.png" height="50" width="50" absolute="true" />
                             </g:link>
 
                         </td>
