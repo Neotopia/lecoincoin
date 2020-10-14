@@ -30,21 +30,6 @@
                 </li>
 
                 <li class="fieldcontain">
-                    <span id="saleAds-label" class="property-label">Annonces</span>
-                    <div class="property-value" aria-labelledby="saleAds-label">
-                        <ul>
-                            <g:each in="${user.saleAds}" var="saleAd">
-                            <li>
-                                <g:link controller="saleAd" action="show" id="${saleAd.id}">
-                                    ${saleAd.title}
-                                </g:link>
-                            </li>
-                            </g:each>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="fieldcontain">
                     <span id="passwordExpired-label" class="property-label">Mot de passe expiré</span>
                     <div class="property-value" aria-labelledby="passwordExpired-label">${user.passwordExpired}</div>
                 </li>
@@ -62,6 +47,21 @@
                 <li class="fieldcontain">
                     <span id="enabled-label" class="property-label">Actif</span>
                     <div class="property-value" aria-labelledby="enabled-label">${user.enabled}</div>
+                </li>
+
+                <li class="fieldcontain">
+                    <span id="saleAds-label" class="property-label">Annonces</span>
+                    <div class="property-value" aria-labelledby="saleAds-label">
+                        <ul>
+                            <g:each in="${user.saleAds}" var="saleAd">
+                                <li>
+                                    <g:link controller="saleAd" action="show" id="${saleAd.id}">
+                                        ${saleAd.title}
+                                    </g:link>
+                                </li>
+                            </g:each>
+                        </ul>
+                    </div>
                 </li>
 
             </ol>

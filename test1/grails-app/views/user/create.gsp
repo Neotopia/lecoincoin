@@ -47,17 +47,20 @@
                     </div>
 
                     <div class="fieldcontain">
-                        <label for="passwordExpired">Mot de passe expiré</label><input type="hidden" name="_passwordExpired">
+                        <label for="passwordExpired">Mot de passe expiré</label>
+                        <input type="hidden" name="_passwordExpired">
                         <input type="checkbox" name="passwordExpired" id="passwordExpired">
                     </div>
 
                     <div class="fieldcontain">
-                        <label for="accountLocked">Compte verrouillé</label><input type="hidden" name="_accountLocked">
+                        <label for="accountLocked">Compte verrouillé</label>
+                        <input type="hidden" name="_accountLocked">
                         <input type="checkbox" name="accountLocked" id="accountLocked">
                     </div>
 
                     <div class="fieldcontain">
-                        <label for="accountExpired">Compte expiré</label><input type="hidden" name="_accountExpired">
+                        <label for="accountExpired">Compte expiré</label>
+                        <input type="hidden" name="_accountExpired">
                         <input type="checkbox" name="accountExpired" id="accountExpired">
                     </div>
 
