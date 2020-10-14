@@ -19,11 +19,12 @@
 
             </ul>
         </li>
+
     </content>
 
     <div class="svg" role="presentation">
-        <div class="grails-logo-container">
-            <asset:image src="fond.jpg" class="grails-logo"/>
+        <div class="logo-container">
+            <asset:image src="fond.jpg" class="lecoincoin-logo"/>
         </div>
     </div>
 

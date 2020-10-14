@@ -8,7 +8,6 @@ import grails.plugin.springsecurity.annotation.Secured
 class UserController {
 
     UserService userService
-
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
