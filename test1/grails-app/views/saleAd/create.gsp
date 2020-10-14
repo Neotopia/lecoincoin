@@ -27,7 +27,50 @@
             </g:hasErrors>
             <g:form resource="${this.saleAd}" method="POST">
                 <fieldset class="form">
-                    <f:all bean="saleAd"/>
+                   <!-- <f:all bean="saleAd"/> -->
+
+                    <div class="fieldcontain required">
+                        <label for="title">Titre
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="title" value="" required="" id="title">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="description">Description
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="description" value="" required="" id="description">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="longDescription">Texte de l'annonce
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <textarea name="longDescription" id="longDescription" value="" required="" cols="35" wrap="soft"></textarea>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="price">Prix (€)
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="number decimal" name="price" value="" required="" min="0.0" id="price">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="price">Illustration
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:link controller="illustration" action="create">Ajouter une illustration</g:link>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="author">Auteur
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:select from="${tpmbds.User.list()}"
+                                name="author"
+                                id="author"
+                                optionKey="id"
+                                optionValue="username">
+                        </g:select>
+                    </div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -29,7 +29,65 @@
             <g:form resource="${this.saleAd}" method="PUT">
                 <g:hiddenField name="version" value="${this.saleAd?.version}" />
                 <fieldset class="form">
-                    <f:all bean="saleAd"/>
+                    <!--<f:all bean="saleAd"/> -->
+
+                    <div class="fieldcontain required">
+                        <label for="title">Titre
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="title" value="${saleAd.title}" required="" id="title">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="description">Description
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="text" name="description" value="${saleAd.description}" required="" id="description">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="longDescription">Texte de l'annonce
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <textarea name="longDescription" id="longDescription" value="" required="" cols="35" wrap="soft">
+                            ${saleAd.longDescription}
+                        </textarea>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="price">Prix (€)
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <input type="number decimal" name="price" value="${saleAd.price}" required="" min="0.0" id="price">
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="author">Auteur
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:select from="${tpmbds.User.list()}"
+                                  name="author"
+                                  id="author"
+                                  optionKey="id"
+                                  optionValue="username">
+                        </g:select>
+                    </div>
+                    <div class="fieldcontain">
+                        <label for="price">Illustrations
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <div class="property-value" aria-labelledby="illustrations-label">
+                        <ul>
+                            <g:each in="${saleAd.illustrations}" var="illustration">
+                                <li>
+                                    <g:link controller="illustration" action="show" id="${illustration.id}">
+                                        ${illustration.filename}
+                                    </g:link>
+                                </li>
+                            </g:each>
+                            <li>
+                                <g:link controller="illustration" action="create">Ajouter une illustration</g:link>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

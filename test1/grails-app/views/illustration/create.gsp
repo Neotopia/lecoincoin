@@ -28,6 +28,7 @@
             <g:form resource="${this.illustration}" method="POST">
                 <fieldset class="form">
                     <f:all bean="illustration"/>
+                    <input type="file" accept="image/png, image/jpeg" name="saleAd_image" id="saleAd_image"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

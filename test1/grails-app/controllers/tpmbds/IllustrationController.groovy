@@ -3,6 +3,7 @@ package tpmbds
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 @Secured(['ROLE_ADMIN', 'ROLE_MODERATOR'])
 class IllustrationController {
