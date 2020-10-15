@@ -2,6 +2,7 @@ package tpmbds
 
 import grails.converters.JSON
 import grails.converters.XML
+import groovy.json.JsonBuilder
 
 class ApiController {
 
@@ -153,3 +154,30 @@ méthodes GET / PUT  / DELETE
 
     }
 }
+
+/*
+
+page 135
+
+def userList = User.list()
+def builder = new JsonBuilder()
+// Build JSON
+def result = builder.users{
+    // Iterate over each user of the list
+    userList.each{
+        // Create new node for each
+        User userInstance -> user {
+            // Declare all properties
+            id userInstance.id
+            username userInstance.username
+        }
+    }
+}
+// Render content as String
+render builder.toPrettyString()
+
+*/
+
+
+
+
