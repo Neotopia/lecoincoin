@@ -41,8 +41,8 @@ méthodes GET / PUT  / DELETE
                 userInstance.save (flush: true)
                 return response.status = 204
                 break
-/**************************/
-                // LE RENOMMAGE DE UN USER SUPPRIME AUSSI SES ANNONCE
+            /**************************/
+                // LE RENOMMAGE DE UN USER SUPPRIME AUSSI SES ANNONCES
             /*************************/
             case "DELETE":
                 if(!params.id)
@@ -51,12 +51,15 @@ méthodes GET / PUT  / DELETE
                 if (!userInstance)
                     return response.status = 404
                 userInstance.delete()
-                userInstance.save (flush: true)
+               // userInstance.save (flush: true)
                 return response.status = 204
                 break
             default:
                 return response.status = 405
                 break
+        /**************************/
+        // MARCHE PAS
+        /*************************/
         }
         return response.status = 406
     }
@@ -64,61 +67,84 @@ méthodes GET / PUT  / DELETE
 
     def saleAd() {
 
-        def userInstance = saleAdInstance.author
-        userInstance.removeFromSaleAds(saleAdInstance)
-        userInstance.save(flush: true)
-/*
-        switch (request.getMethod()) {
-            case "GET":
-                if (!params.id)
-                    return response.status = 400
-                def saleAdInstance = SaleAd.get(params.id)
-                if (!saleAdInstance)
-                    return response.status = 404
-                response.withFormat {
-                    xml { render saleAdInstance as XML }
-                    json { render saleAdInstance as JSON }
-                }
+         switch (request.getMethod()) {
+             case "GET":
+                 if (!params.id)
+                     return response.status = 400
+                 def saleAdInstance = SaleAd.get(params.id)
+                 if (!saleAdInstance)
+                     return response.status = 404
+                 response.withFormat {
+                     xml { render saleAdInstance as XML }
+                     json { render saleAdInstance as JSON }
+                 }
                 break
             case "PUT":
-                if (!params.id)
+                if (!params.id || !params.title || !params.price || !params.description || !params.longDescription ||
+                        !params.author || !params.illustrations)
                     return response.status = 400
                 def saleAdInstance = SaleAd.get(params.id) //si l'id est attaché à une instance
                 if (!saleAdInstance)
                     return response.status = 404
-                def map = [username: params.username, password: params.password]
+                def map = [title: params.title, price: params.price, description: params.description,
+                           longDescription: params.longDescription, author: params.author, illustrations: params.illustrations]
                 // we then bind data to the model object this way
                 saleAdInstance.properties = map
                 // and save the updated user
-                saleAdInstance.save flush: true
+                saleAdInstance.save (flush: true)
                 return response.status = 204
                 break
+         /**************************/
+         // MARCHE PAS
+         /*************************/
             case "DELETE":
                 f(!params.id)
                 return response.status = 400
+                def userInstance = saleAdInstance.author
+                userInstance.removeFromSaleAds(saleAdInstance)
+                userInstance.save(flush: true)
+
                 def saleAdInstance = SaleAd.get(params.id) //si l'id est attaché à une instance
                 if (!saleAdInstance)
                     return response.status = 404
-                saleAdInstance.delete
+                saleAdInstance.delete()
                 return response.status = 204
                 break
             default:
                 return response.status = 405
                 break
+         /**************************/
+         // MARCHE PAS
+         /*************************/
         }
         return response.status = 406
-
- */
     }
-
-
 
     /*
     méthode GET / POST
      */
 
-    def users(){
 
+    def users(){
+        switch (request.getMethod()) {
+            case "GET":
+               /* List usersInstanceList = []
+                map.collect()
+                def usersInstance = User.get(params.id)
+                if (!userInstance)
+                    return response.status = 404*/
+                def ListUser= User.list()
+                response.withFormat {
+                    xml { render ListUser as XML }
+                    json { render ListUser as JSON }
+                }
+                break
+
+            case "POST":
+                def userInstance = new User(username: params.username, password: params.password).save()
+                UserRole.create(userInstance, Role.get(params.role), flush: true)
+                break
+        }
     }
 
 
