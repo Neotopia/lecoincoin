@@ -82,6 +82,9 @@ class UserController {
             return
         }
 
+        def userInstance = User.get(id)
+        UserRole.removeAll(userInstance)
+        
         userService.delete(id)
 
         request.withFormat {
