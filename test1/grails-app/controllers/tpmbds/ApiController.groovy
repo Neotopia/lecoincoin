@@ -38,10 +38,10 @@ méthodes GET / PUT  / DELETE
                 render builder.toPrettyString()
                 break
             case "PATCH":
-                if (!params.id)
+                if (!params.id || !request.JSON.username || !request.JSON.password)
                     return response.status = 400
 
-                def userInstance = User.get(params.id) //si l'id est attaché à une instance
+                def userInstance = User.get(params.id) //si l'id n'est attaché à aucun user existant
                 if (!userInstance)
                     return response.status = 404
 
@@ -150,10 +150,30 @@ méthodes GET / PUT  / DELETE
                 render builder.toPrettyString()
                 break
             case "POST":
-                def userInstance = new User(username: params.username, password: params.password).save(flush: true)
-                UserRole.create(userInstance, Role.get(params.role), flush: true)
+                if (!request.JSON.username || !request.JSON.password || !request.JSON.roleId)
+                    return response.status = 400
+                // On vérifie si le nom existe déjà dans la base
+                if(User.findByUsername((request.JSON.username)) != null){
+                    response.status = 400
+                    response.withFormat {
+                        xml { render ([error: 'Username already exists'] as XML)}
+                        json { render ([error: 'Username already exists'] as JSON)}
+                    }
+                    return
+                }
+                // On vérifie si le role id existe
+                if(request.JSON.roleId != 1 && request.JSON.roleId != 2 && request.JSON.roleId != 3 ){
+                    response.status = 400
+                    response.withFormat {
+                        xml { render ([error: 'Invalid role Id'] as XML)}
+                        json { render ([error: 'Invalid role Id'] as JSON)}
+                    }
+                    return
+                }
+                def newUser = new User(username: request.JSON.username, password: request.JSON.password).save(flush: true)
+                UserRole.create(newUser, Role.get(request.JSON.roleId), true)
+                return response.status = 201
                 break
-
             default:
                 return response.status = 405
                 break
@@ -171,14 +191,41 @@ méthodes GET / PUT  / DELETE
                 }
                 break
             case "POST":
-                def saleAdInstance = new SaleAd(
-                        title: params.title,
-                        description: params.description,
-                        longDescription: params.longDescription,
-                        price: params.price)
-                def userInstance = User.get(params.userId)
-                userInstance.addToSaleAds(saleAdInstance)
+                if (!request.JSON.title
+                        || !request.JSON.description
+                        || !request.JSON.longDescription
+                        || !request.JSON.price
+                        || !request.JSON.authorId){
+
+                    return response.status = 400
+                }
+                // On teste si le prix rentré est bien un nombre
+                if(!(request.JSON.price instanceof Number)){
+                    response.status = 400
+                    response.withFormat {
+                        xml { render ([error: 'Price is not a number'] as XML)}
+                        json { render ([error: 'Price is not a number'] as JSON)}
+                    }
+                }
+                def newSaleAd = new SaleAd(
+                        title: request.JSON.title,
+                        description: request.JSON.description,
+                        longDescription: request.JSON.longDescription,
+                        price: request.JSON.price
+                )
+                def userInstance = User.get(request.JSON.authorId)
+                // On teste si l'auteur entré existe bien
+                if (!userInstance){
+                    response.status = 404
+                    response.withFormat {
+                        xml { render ([error: 'Author not found'] as XML)}
+                        json { render ([error: 'Author not found'] as JSON)}
+                        return
+                    }
+                }
+                userInstance.addToSaleAds(newSaleAd)
                 userInstance.save(flush: true, failOnError: true)
+                return response.status = 201
                 break
 
             default:
@@ -219,11 +266,11 @@ render builder.toPrettyString()
 /*
 ZONE DE TEST
 
-GET USER :
+GET USER (Fonctionnel) :
 
 http://localhost:8081/tpmbds/api/user/2
 
-PATCH USER :
+PATCH USER (Fonctionnel) :
 
 http://localhost:8081/tpmbds/api/user/2
 
@@ -238,15 +285,21 @@ DELETE USER :
 
 
 
-GET USERS :
+GET USERS (Fonctionnel) :
 
+http://localhost:8081/tpmbds/api/users
 
+POST USER (Fonctionnel) :
 
-POST USER :
+http://localhost:8081/tpmbds/api/users
 
+{
+    "username":"NouveauUser",
+    "password":"mdp",
+    "roleId":"2"
+}
 
-
-GET SALEAD :
+GET SALEAD (Fonctionnel) :
 
 http://localhost:8081/tpmbds/api/saleAd/2
 
@@ -258,11 +311,22 @@ DELETE SALEAD :
 
 
 
-GET SALEADS :
+GET SALEADS (Fonctionnel) :
+
+http://localhost:8081/tpmbds/api/saleAds
 
 
+POST SALEAD (Fonctionnel) :
 
-POST SALEAD :
+http://localhost:8081/tpmbds/api/saleAds
+
+{
+    "title":"Annonce super cool",
+    "description":"Voiture qui roule trop bien",
+    "longDescription":"Bonjour, Je vends ma superbe Renault 4L.",
+    "price":1000.56,
+    "authorId":2
+}
 
 
  */
