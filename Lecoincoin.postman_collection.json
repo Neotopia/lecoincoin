@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "373ac678-46d2-48ff-a02e-49d6c6f0554a",
+		"name": "Lecoincoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_User_ID3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/user/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH_User_3",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Shakira\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/user/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"user",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_User_2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/user/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_SaleAd_2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/saleAd/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"saleAd",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH_SaleAd_2",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Le canard empaillé\",\r\n    \"price\": \"15\",\r\n    \"description\": \"L'histoire fantastique d'un canard\",\r\n    \"longDescription\": \"Raconte l'histoire d'un canard jusqu'à sa célèbre et victorieuse mort qui lui permit d'être empaillée et affichée glorieusement dans une boucherie\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/saleAd/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"saleAd",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_SaleAd_3",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Le canard empaillé\",\r\n    \"price\": \"15\",\r\n    \"description\": \"L'histoire fantastique d'un canard\",\r\n    \"longDescription\": \"Raconte l'histoire d'un canard jusqu'à sa célèbre et victorieuse mort qui lui permit d'être empaillée et affichée glorieusement dans une boucherie\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/saleAd/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"saleAd",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_USERS_3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Le canard empaillé\",\r\n    \"price\": \"15\",\r\n    \"description\": \"L'histoire fantastique d'un canard\",\r\n    \"longDescription\": \"Raconte l'histoire d'un canard jusqu'à sa célèbre et victorieuse mort qui lui permit d'être empaillée et affichée glorieusement dans une boucherie\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_SaleAds_3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/saleAds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"saleAds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_Users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"nicolas\",\r\n    \"password\": \"incredible\",\r\n    \"roleId\": 3\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_saleAds",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Le canard enchaîné\",\r\n    \"price\": 15,\r\n    \"description\": \"Politique\",\r\n    \"longDescription\": \"Possède de grands débats\",\r\n    \"authorId\":3\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/tpmbds/api/saleAds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"tpmbds",
+						"api",
+						"saleAds"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
