@@ -28,12 +28,13 @@ méthodes GET / PUT  / DELETE
                     json { render userInstance as JSON }
                 }
                 break
-            case "PUT":
+            case "PATCH":
                 if (!params.id || !params.username || !params.password)
                     return response.status = 400
                 def userInstance = User.get(params.id) //si l'id est attaché à une instance
                 if (!userInstance)
                     return response.status = 404
+
 
                 def map = [username: params.username, password: params.password]
                 // we then bind data to the model object this way
@@ -95,9 +96,12 @@ méthodes GET / PUT  / DELETE
                 saleAdInstance.save (flush: true)
                 return response.status = 204
                 break
+
+
          /**************************/
          // MARCHE PAS
          /*************************/
+
             case "DELETE":
                 f(!params.id)
                 return response.status = 400
@@ -114,9 +118,9 @@ méthodes GET / PUT  / DELETE
             default:
                 return response.status = 405
                 break
-         /**************************/
-         // MARCHE PAS
-         /*************************/
+
+
+
         }
         return response.status = 406
     }
