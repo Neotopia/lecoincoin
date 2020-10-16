@@ -23,10 +23,17 @@ méthodes GET / PUT  / DELETE
                 def userInstance = User.get(params.id)
                 if (!userInstance)
                     return response.status = 404
-                response.withFormat {
-                    xml { render userInstance as XML }
-                    json { render userInstance as JSON }
+                def builder = new JsonBuilder()
+                builder.user{
+                    id userInstance.id
+                    username userInstance.username
+                    saleAds {
+                        userInstance.saleAds.each {
+                            SaleAd saleAdInstance -> saleAd(id: saleAdInstance.id)
+                        }
+                    }
                 }
+                render builder.toPrettyString()
                 break
             case "PATCH":
                 if (!params.id || !params.username || !params.password)
@@ -133,30 +140,57 @@ méthodes GET / PUT  / DELETE
     def users(){
         switch (request.getMethod()) {
             case "GET":
-               /* List usersInstanceList = []
-                map.collect()
-                def usersInstance = User.get(params.id)
-                if (!userInstance)
-                    return response.status = 404*/
-                def ListUser= User.list()
-                response.withFormat {
-                    xml { render ListUser as XML }
-                    json { render ListUser as JSON }
+                def userList = User.list()
+                def builder = new JsonBuilder()
+                builder {
+                    users userList.collect {
+                        [
+                                id      : it.getId(),
+                                username: it.getUsername(),
+                        ]
+                    }
                 }
+                render builder.toPrettyString()
                 break
-
             case "POST":
-                def userInstance = new User(username: params.username, password: params.password).save()
+                def userInstance = new User(username: params.username, password: params.password).save(flush: true)
                 UserRole.create(userInstance, Role.get(params.role), flush: true)
                 break
+
+            default:
+                return response.status = 405
+                break
         }
+        return response.status = 406
     }
-
-
 
     def saleAds(){
+        switch (request.getMethod()) {
+            case "GET":
+                def ListSaleAd= SaleAd.list()
+                response.withFormat {
+                    xml { render ListSaleAd as XML }
+                    json { render ListSaleAd as JSON }
+                }
+                break
+            case "POST":
+                def saleAdInstance = new SaleAd(
+                        title: params.title,
+                        description: params.description,
+                        longDescription: params.longDescription,
+                        price: params.price)
+                def userInstance = User.get(params.userId)
+                userInstance.addToSaleAds(saleAdInstance)
+                userInstance.save(flush: true, failOnError: true)
+                break
 
+            default:
+                return response.status = 405
+                break
+        }
+        return response.status = 406
     }
+
 }
 
 /*
