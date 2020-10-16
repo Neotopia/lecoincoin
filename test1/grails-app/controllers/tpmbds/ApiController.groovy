@@ -27,32 +27,29 @@ méthodes GET / PUT  / DELETE
                 builder.user{
                     id userInstance.id
                     username userInstance.username
-                    saleAds {
-                        userInstance.saleAds.each {
-                            SaleAd saleAdInstance -> saleAd(id: saleAdInstance.id)
-                        }
+                    saleAds userInstance.saleAds.collect {
+                        [
+                                id      : it.getId(),
+                                title : it.getTitle(),
+                                description: it.getDescription()
+                        ]
                     }
                 }
                 render builder.toPrettyString()
                 break
             case "PATCH":
-                if (!params.id || !params.username || !params.password)
+                if (!params.id)
                     return response.status = 400
+
                 def userInstance = User.get(params.id) //si l'id est attaché à une instance
                 if (!userInstance)
                     return response.status = 404
 
-
-                def map = [username: params.username, password: params.password]
-                // we then bind data to the model object this way
+                def map = [username: request.JSON.username, params: request.JSON.password]
                 userInstance.properties = map
-                // and save the updated user
                 userInstance.save (flush: true)
                 return response.status = 204
                 break
-            /**************************/
-                // LE RENOMMAGE DE UN USER SUPPRIME AUSSI SES ANNONCES
-            /*************************/
             case "DELETE":
                 if(!params.id)
                     return response.status = 400
@@ -222,17 +219,50 @@ render builder.toPrettyString()
 /*
 ZONE DE TEST
 
+GET USER :
+
+http://localhost:8081/tpmbds/api/user/2
+
 PATCH USER :
 
+http://localhost:8081/tpmbds/api/user/2
+
 {
-    "id":"2",
     "username":"Nico",
     "password":"password"
 }
 
 http://localhost:8081/tpmbds/api/user?id=2&username=Nico&password=password
 
-http://localhost:8081/tpmbds/api/user
+DELETE USER :
+
+
+
+GET USERS :
+
+
+
+POST USER :
+
+
+
+GET SALEAD :
+
+http://localhost:8081/tpmbds/api/saleAd/2
+
+PATCH SALEAD :
+
+
+
+DELETE SALEAD :
+
+
+
+GET SALEADS :
+
+
+
+POST SALEAD :
 
 
  */
