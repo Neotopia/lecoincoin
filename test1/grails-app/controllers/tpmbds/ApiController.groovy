@@ -219,3 +219,21 @@ render builder.toPrettyString()
 
 
 
+/*
+ZONE DE TEST
+
+PATCH USER :
+
+{
+    "id":"2",
+    "username":"Nico",
+    "password":"password"
+}
+
+http://localhost:8081/tpmbds/api/user?id=2&username=Nico&password=password
+
+http://localhost:8081/tpmbds/api/user
+
+
+ */
+
