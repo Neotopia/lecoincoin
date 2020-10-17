@@ -28,16 +28,39 @@
                         <g:link controller="user" style="margin-left: 50px;position: relative; top: 25px;">Utilisateurs</g:link>
                         <g:link controller="saleAd" style="margin-left: 20px;position: relative; top: 25px;">Annonces</g:link>
             </div>
+
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
         </div>
-        <div class="currentuser" style="position: absolute;top: 50px;right: 9.5%;">
-            <sec:loggedInUserInfo field="username" />
+        <div class="dropdown" style="position: absolute;bottom: 40px;right: 100px;">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <sec:ifNotLoggedIn>
+                    Profil
+                </sec:ifNotLoggedIn>
+                <sec:ifLoggedIn>
+                    <sec:loggedInUserInfo field="username" />
+                </sec:ifLoggedIn>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="controller">
+                    <sec:ifNotLoggedIn>
+                        <g:link controller="login" style="color: black !important;">Connexion</g:link>
+                    </sec:ifNotLoggedIn>
+                </li>
+                <li class="controller">
+                    <sec:ifLoggedIn>
+                        <g:link controller="logout" style="color: black !important;">Se déconnecter</g:link>
+                    </sec:ifLoggedIn>
+                </li>
+            </ul>
         </div>
+
     </div>
+
 
     <g:layoutBody/>
 
