@@ -10,7 +10,7 @@ class ApiController {
 
 /*
 méthodes GET / PUT  / DELETE
- */
+*/
 
 /******* RESSOURCE INDIVIDUEL USER *******/
     def user() {
@@ -159,7 +159,7 @@ méthodes GET / PUT  / DELETE
                 }
                 // On vérifie si le role id existe
                 if(request.JSON.roleId != 1 && request.JSON.roleId != 2 && request.JSON.roleId != 3 ){
-                    response.status = 400
+                    response.status = 404
                     response.withFormat {
                         xml { render ([error: 'Invalid role Id'] as XML)}
                         json { render ([error: 'Invalid role Id'] as JSON)}
