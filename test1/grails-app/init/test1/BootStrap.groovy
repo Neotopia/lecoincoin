@@ -29,9 +29,9 @@ class BootStrap {
                         description: "description " + index,
                         longDescription: "description " + index,
                         price: 100F * index)
-                (1..3).each{
+             /*   (1..3).each{
                     annonceInstance.addToIllustrations(new Illustration(filename: "https://picsum.photos/200/300"))
-                }
+                }*/
 
                 userClient.addToSaleAds(annonceInstance)
          }

@@ -3,12 +3,13 @@ package tpmbds
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.springframework.web.multipart.MultipartHttpServletRequest
 
 @Secured(['ROLE_ADMIN', 'ROLE_MODERATOR'])
 class IllustrationController {
 
     IllustrationService illustrationService
+    FileUploadService fileUploadService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -33,6 +34,12 @@ class IllustrationController {
 
         try {
             illustrationService.save(illustration)
+            def saleAdImageFile =  request.getFile("saleAd_image")
+            if(!saleAdImageFile.isEmpty()){
+                illustration.filename = fileUploadService.uploadFile(saleAdImageFile,"${illustration.id}.png","saleAdImages")
+            }
+            illustrationService.save(illustration)
+
         } catch (ValidationException e) {
             respond illustration.errors, view:'create'
             return

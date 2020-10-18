@@ -25,10 +25,15 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.illustration}" method="POST">
+            <g:form resource="${this.illustration}" method="POST" enctype="multipart/form-data">
                 <fieldset class="form">
-                    <f:all bean="illustration"/>
-                    <input type="file" accept="image/png, image/jpeg" name="saleAd_image" id="saleAd_image"/>
+                    <!--<f:all bean="illustration"/> -->
+                    <g:select from ="${tpmbds.SaleAd.list()}"
+                              name="saleAd"
+                              optionKey="id" optionValue="title"/>
+                    <div class="fieldcontain">
+                        <input type="file" accept="image/png, image/jpeg" name="saleAd_image" id="saleAd_image"/>
+                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -20,6 +20,9 @@
             <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:display bean="saleAd" />
+            <g:each in = "${saleAd.illustrations}" var="illustration">
+                <img src="${resource(dir:'saleAdImages', file: illustration.id + '.png')}" width="70px" height="70px" style="object-fit: cover">
+            </g:each>
             <g:form resource="${this.saleAd}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.saleAd}">Modifier l'annonce</g:link>

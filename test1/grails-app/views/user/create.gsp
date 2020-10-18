@@ -45,29 +45,6 @@
                         </label>
                         <input type="password" name="password" required="" value="" id="password">
                     </div>
-
-                    <div class="fieldcontain">
-                        <label for="passwordExpired">Mot de passe expiré</label>
-                        <input type="hidden" name="_passwordExpired">
-                        <input type="checkbox" name="passwordExpired" id="passwordExpired">
-                    </div>
-
-                    <div class="fieldcontain">
-                        <label for="accountLocked">Compte verrouillé</label>
-                        <input type="hidden" name="_accountLocked">
-                        <input type="checkbox" name="accountLocked" id="accountLocked">
-                    </div>
-
-                    <div class="fieldcontain">
-                        <label for="accountExpired">Compte expiré</label>
-                        <input type="hidden" name="_accountExpired">
-                        <input type="checkbox" name="accountExpired" id="accountExpired">
-                    </div>
-
-                    <div class="fieldcontain">
-                        <label for="enabled">Actif</label>
-                        <input type="hidden" name="_enabled"><input type="checkbox" name="enabled" checked="checked" id="enabled">
-                    </div>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="Ajouter" />

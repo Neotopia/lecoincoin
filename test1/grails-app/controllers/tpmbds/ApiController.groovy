@@ -26,13 +26,13 @@ méthodes GET / PUT  / DELETE
                     return response.status = 404
                 //gstion de l'affichage des données sur un Json
                 def builder = new JsonBuilder()
-                builder.user{
+                builder.user {
                     id userInstance.id
                     username userInstance.username
                     saleAds userInstance.saleAds.collect {
                         [
-                                id      : it.getId(),
-                                title : it.getTitle(),
+                                id         : it.getId(),
+                                title      : it.getTitle(),
                                 description: it.getDescription()
                         ]
                     }
@@ -49,7 +49,7 @@ méthodes GET / PUT  / DELETE
                     return response.status = 404
                 def map = [username: request.JSON.username, password: request.JSON.password]
                 userInstance.properties = map
-                userInstance.save (flush: true)
+                userInstance.save(flush: true)
                 return response.status = 204
                 break
 
@@ -73,17 +73,17 @@ méthodes GET / PUT  / DELETE
 /******* RESSOURCE INDIVIDUEL SALEAD *******/
     def saleAd() {
 
-         switch (request.getMethod()) {
-             case "GET":
-                 if (!params.id)
-                     return response.status = 400
-                 def saleAdInstance = SaleAd.get(params.id)
-                 if (!saleAdInstance)
-                     return response.status = 404
-                 response.withFormat {
-                     xml { render saleAdInstance as XML }
-                     json { render saleAdInstance as JSON }
-                 }
+        switch (request.getMethod()) {
+            case "GET":
+                if (!params.id)
+                    return response.status = 400
+                def saleAdInstance = SaleAd.get(params.id)
+                if (!saleAdInstance)
+                    return response.status = 404
+                response.withFormat {
+                    xml { render saleAdInstance as XML }
+                    json { render saleAdInstance as JSON }
+                }
                 break
 
             case "PATCH":
@@ -94,30 +94,30 @@ méthodes GET / PUT  / DELETE
                 if (!saleAdInstance)
                     return response.status = 404
 
-                def map = [title: request.JSON.title, price: request.JSON.price, description: request.JSON.description,
+                def map = [title          : request.JSON.title, price: request.JSON.price, description: request.JSON.description,
                            longDescription: request.JSON.longDescription]
                 // we then bind data to the model object this way
                 saleAdInstance.properties = map
                 // and save the updated user
-                saleAdInstance.save (flush: true)
+                saleAdInstance.save(flush: true)
                 return response.status = 204
                 break
 
-             case "DELETE":
-                 if(!params.id) {
-                     return response.status = 400
-                 }
-                 def saleAdInstance = SaleAd.get(params.id) //si l'id est attaché à une instance
-                 if (!saleAdInstance) {
-                     return response.status = 404
-                 }
+            case "DELETE":
+                if (!params.id) {
+                    return response.status = 400
+                }
+                def saleAdInstance = SaleAd.get(params.id) //si l'id est attaché à une instance
+                if (!saleAdInstance) {
+                    return response.status = 404
+                }
 
-                 saleAdInstance.delete(flush: true)
-                 return response.status = 204
-                 break
-             default:
-                 return response.status = 405
-                 break
+                saleAdInstance.delete(flush: true)
+                return response.status = 204
+                break
+            default:
+                return response.status = 405
+                break
 
         }
         return response.status = 406
@@ -129,7 +129,7 @@ méthodes GET / PUT  / DELETE
      */
 
 /******* COLLECTION USERS *******/
-    def users(){
+    def users() {
         switch (request.getMethod()) {
             case "GET":
                 def userList = User.list()
@@ -149,20 +149,20 @@ méthodes GET / PUT  / DELETE
                 if (!request.JSON.username || !request.JSON.password || !request.JSON.roleId)
                     return response.status = 400
                 // On vérifie si le nom existe déjà dans la base
-                if(User.findByUsername((request.JSON.username)) != null){
+                if (User.findByUsername((request.JSON.username)) != null) {
                     response.status = 400
                     response.withFormat {
-                        xml { render ([error: 'Username already exists'] as XML)}
-                        json { render ([error: 'Username already exists'] as JSON)}
+                        xml { render([error: 'Username already exists'] as XML) }
+                        json { render([error: 'Username already exists'] as JSON) }
                     }
                     return
                 }
                 // On vérifie si le role id existe
-                if(request.JSON.roleId != 1 && request.JSON.roleId != 2 && request.JSON.roleId != 3 ){
+                if (request.JSON.roleId != 1 && request.JSON.roleId != 2 && request.JSON.roleId != 3) {
                     response.status = 404
                     response.withFormat {
-                        xml { render ([error: 'Invalid role Id'] as XML)}
-                        json { render ([error: 'Invalid role Id'] as JSON)}
+                        xml { render([error: 'Invalid role Id'] as XML) }
+                        json { render([error: 'Invalid role Id'] as JSON) }
                     }
                     return
                 }
@@ -177,31 +177,31 @@ méthodes GET / PUT  / DELETE
         return response.status = 406
     }
 /******* COLLECTION SALEADS *******/
-    def saleAds(){
+    def saleAds() {
         switch (request.getMethod()) {
             case "GET":
-                def ListSaleAd= SaleAd.list()
+                def ListSaleAd = SaleAd.list()
                 response.withFormat {
                     xml { render ListSaleAd as XML }
                     json { render ListSaleAd as JSON }
                 }
                 break
-            
+
             case "POST":
                 if (!request.JSON.title
                         || !request.JSON.description
                         || !request.JSON.longDescription
                         || !request.JSON.price
-                        || !request.JSON.authorId){
+                        || !request.JSON.authorId) {
 
                     return response.status = 400
                 }
                 // On teste si le prix rentré est bien un nombre
-                if(!(request.JSON.price instanceof Number)){
+                if (!(request.JSON.price instanceof Number)) {
                     response.status = 400
                     response.withFormat {
-                        xml { render ([error: 'Price is not a number'] as XML)}
-                        json { render ([error: 'Price is not a number'] as JSON)}
+                        xml { render([error: 'Price is not a number'] as XML) }
+                        json { render([error: 'Price is not a number'] as JSON) }
                     }
                 }
                 def newSaleAd = new SaleAd(
@@ -212,11 +212,11 @@ méthodes GET / PUT  / DELETE
                 )
                 def userInstance = User.get(request.JSON.authorId)
                 // On teste si l'auteur entré existe bien
-                if (!userInstance){
+                if (!userInstance) {
                     response.status = 404
                     response.withFormat {
-                        xml { render ([error: 'Author not found'] as XML)}
-                        json { render ([error: 'Author not found'] as JSON)}
+                        xml { render([error: 'Author not found'] as XML) }
+                        json { render([error: 'Author not found'] as JSON) }
                         return
                     }
                 }

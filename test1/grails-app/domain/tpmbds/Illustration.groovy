@@ -7,6 +7,6 @@ class Illustration {
     static belongsTo = [saleAd: SaleAd]
 
     static constraints = {
-        filename blank: false, nullable: false
+        filename blank: false, nullable: true
     }
 }

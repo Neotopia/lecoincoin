@@ -48,9 +48,9 @@
                                 ${saleAd.price}
                         </td>
                         <td>
-                            <g:link controller="saleAd" action="show" id="${saleAd.id}">
-                                <asset:image src="canard_logo_petit.png" height="50" width="50" absolute="true" />
-                            </g:link>
+                            <g:each in = "${saleAd.illustrations}" var="illustration">
+                                <img src="${resource(dir:'saleAdImages', file: illustration.id + '.png')}" width="70px" height="70px" style="object-fit: cover">
+                            </g:each>
 
                         </td>
                         <td>
