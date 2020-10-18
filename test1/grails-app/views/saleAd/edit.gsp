@@ -75,7 +75,7 @@
                             <g:each in="${saleAd.illustrations}" var="illustration">
                                 <li>
                                     <g:link controller="illustration" action="show" id="${illustration.id}">
-                                        ${illustration.filename}
+                                        <img src="${resource(dir:'saleAdImages', file: illustration.id + '.png')}" width="70px" height="70px" style="object-fit: cover">
                                     </g:link>
                                 </li>
                             </g:each>
